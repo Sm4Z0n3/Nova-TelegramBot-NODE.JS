@@ -4,7 +4,7 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const axios = require('axios');
 
-var token_ = "6662950137:AAH2w1Fe58rEo3jtOYa_gPz4uZbf9mruYu0";
+var token_ = "";
 var bot_;
 
 function getContentType(filePath) {
