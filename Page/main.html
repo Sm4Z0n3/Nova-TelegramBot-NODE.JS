@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Page\Style\sidebar.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <img alt="垃圾浏览器" style="width: 130px;height: 130px;margin-left: 5px;border-radius: 45px;" src="Page\image\cat.jpg">
+        <a href="/Home"><span>Home</span></a>
+        <a href="/Messages"><span>Messages</span></a>
+        <a href="/Bots"><span>Bots</span></a>
+        <a href="/Groups"><span>Groups</span></a>
+        <a href="#"><span>picture</span></a>
+        <a href="#"><span>OR code</span></a>
+        <a href="#"><span>authentication</span></a>
+        <a href="#"><span>cancellation</span></a>
+    </div>
+    <div id="app" style="overflow-y: auto;height: 86%;width: 78%;padding: 12px;background-color: rgba(240, 248, 255, 0.857);margin-left: 15px;border-radius: 15px;">
+    {MAINAPP}
+    </div>
+</body>
+</html>
+<script>
+    function isMobileDevice() {
+  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return navigator.userAgent.match(mobileRegex) !== null;
+}
+var app_ = document.getElementById("app");
+var boxElement = document.querySelector('.box');
+if (isMobileDevice()) {
+    alert("用户在手机端");
+    boxElement.style.width = '3px';
+        boxElement.style.height = '12px';
+        boxElement.style.marginLeft = '0px';
+    boxElement.className = "box1";
+}
+</script>
