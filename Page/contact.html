@@ -104,7 +104,7 @@ function readAndGenerateCheckboxes(file) {
 
       lines.forEach(line => {
         const [id, nickname, username, logolink] = line.split('|').map(item => item.trim());
-        if (id && nickname && username && logolink) {
+        if (id || nickname || username || logolink) {
           const contactWrapper = document.createElement('div');
           contactWrapper.classList.add('contact');
 
