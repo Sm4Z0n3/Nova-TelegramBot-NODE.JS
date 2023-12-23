@@ -4,31 +4,47 @@ function getData() {
   fetch('../Config/Bots.txt')
     .then(response => response.text())
     .then(data => {
-      const lines = data.split('\n'); // 按行分割内容
+      const lines = data.split('\n');
 
-      const tableBody = document.querySelector('#tokens tbody');
-      tableBody.innerHTML = "";
+      const list = document.querySelector('#tokens');
+      list.innerHTML = "";
+
       for (const line of lines) {
-        const dataArray = line.split('|'); // 以 '|' 分隔每行内容
-
-        const row = document.createElement('tr');
+        const dataArray = line.split('|');
+        const listItem = document.createElement('li');
+        
         for (const item of dataArray) {
-          const cell = document.createElement('td');
-          cell.textContent = item.trim(); // 删除两端空格
-          row.appendChild(cell);
+          const itemText = document.createElement('span');
+          itemText.textContent = item.trim();
+          listItem.appendChild(itemText);
         }
 
-        const removeButton = document.createElement('button');
-        removeButton.textContent = ' Info ';
-        removeButton.id = dataArray[0];
-        removeButton.addEventListener('click', function(){ShowInfo(this)});
+        const InfoButton = document.createElement('button');
+        InfoButton.textContent = 'Info';
+        InfoButton.id = dataArray[0];
+        InfoButton.addEventListener('click', function() {
+          ShowInfo(this);
+        });
 
-        row.appendChild(document.createElement('td').appendChild(removeButton));
-        tableBody.appendChild(row);
+        const RemoveButton = document.createElement('button');
+        RemoveButton.textContent = 'Remove';
+        RemoveButton.id = dataArray[0];
+        RemoveButton.addEventListener('click', function() {
+          RemoveInfo(this);
+        });
+
+        const buttonDiv = document.createElement('div');
+        buttonDiv.style.margin = '10px 0';
+        buttonDiv.appendChild(InfoButton);
+        buttonDiv.appendChild(RemoveButton);
+        listItem.appendChild(buttonDiv);
+
+        list.appendChild(listItem);
       }
     })
     .catch(error => console.error('Error fetching data:', error));
 }
+
 var token1 = "";
 function ShowInfo(btn) {
     const row = btn.closest('tr');

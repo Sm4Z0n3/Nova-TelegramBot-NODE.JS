@@ -4,7 +4,7 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const axios = require('axios');
 
-var token_ = "";
+var token_;
 var bot_;
 
 function getContentType(filePath) {
@@ -120,7 +120,7 @@ const server = http.createServer((req, res) => {
     } else if (req.url === '/Messages') {
       content = fs.readFileSync("./Page/messages.html", 'utf8');
     } else if (req.url === '/Contact') {
-      if(fs.readFileSync("./Config/NOWBOT.dat").length > 18){
+      if(fs.readFileSync("./Config/NOWBOT.dat").length > 18 && token_ != null){
         content = fs.readFileSync("./Page/contact.html", 'utf8').replace("{GROUPS}",result_qun);
       }else{
         content = "请先连接一个机器人.";

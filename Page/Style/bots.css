@@ -13,6 +13,11 @@
     border: 1px #fff;
     transition: all 0.4s ease;
 }
+#token span{
+  padding: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
 
   .info-window {
     display: none;
