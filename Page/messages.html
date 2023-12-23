@@ -1,1 +1,80 @@
-msg
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+    <h2 class="animate__animated animate__tada" align="center">🎇使用Messages页面来收集处理消息数据.😊🎇</h2>
+    <br><br>
+    <h3 style="color: rgb(110, 110, 110);">Input Telegram Bot Token.</h3>
+    <input title="TOKEN_" style="width: 360px;" type="text" value="" id="TOKEN_"><br>
+    <button onclick="RUNBOT()">Connect</button>
+    <div id="output"></div>
+</div>
+<script>
+      function RUNBOT(){
+    fetch(window.location, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'runtg_',
+        token: document.getElementById('TOKEN_').value,
+      }),
+    })
+      .then(response => {
+        ConnectWS()
+        console.log('Request sent');
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+const outputDiv = document.getElementById('output');
+let lastContent = '';
+setInterval(async () => {
+  try {
+    const response = await fetch('../Config/Log.txt');
+    const text = await response.text();
+    if (text !== lastContent) {
+      outputDiv.innerHTML = text;
+      lastContent = text;
+    }
+  } catch (error) {
+    console.error('读取文件时出错：', error);
+  }
+}, 1000);
+
+
+
+  //读取TOKEN
+    fetch('../Config/NOWBOT.dat')
+  .then(response => response.text())
+  .then(data => {
+    if (data.length > 20) {
+      const tokenInput = document.getElementById('TOKEN_');
+      tokenInput.value = data;
+
+      /*
+      fetch(window.location, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            type: 'clearbot_',
+        }),
+        }).then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log(data); // 输出返回的数据或响应消息
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });*/
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+</script>

@@ -1,1 +1,29 @@
-bots
+<link rel="stylesheet" href="../Page/Style/bots.css">
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+    <h2 class="animate__animated animate__tada">🎇合理使用Bots管理密钥得到更好的效果！🎇</h2><br><br>
+    <div>
+      <button onclick="getData()">Refresh</button>
+      <button onclick="addbot()">Add new bot.</button><br>
+    </div>
+    <table id="tokens">
+      <thead>
+        <tr>
+          <th>机器人昵称</th>
+          <th>Token</th>
+          <th>添加时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+</div>
+<div id="infoWindow" class="info-window">
+    <span class="close" onclick="CloseInfo()">&times;</span>
+    <h2>Information Window</h2>
+    <p id="TEXT"></p>
+    <br><br>
+    <button onclick="jump_()">Send To [/Messages]</button>
+  </div>
+<script src="../Page/script/Bots.js"></script>
+  

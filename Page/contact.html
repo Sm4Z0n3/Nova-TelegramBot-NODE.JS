@@ -1,0 +1,152 @@
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+    <h2 class="animate__animated animate__tada">🎇使用Contact管理您的Bot的通讯录是一个不二之选！🎇</h2><br><br>
+    <input title="sendmsg_" type="text" style="width: 700px;" id="TEXT_"><br>
+    <button onclick="Send_Group()" style="width: 200px;">Send</button>
+    <div id="contacts" class="contacts">
+        
+    </div>
+</div>
+<style>
+    img{
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+    }
+    .contacts {
+    display: flex;
+    flex-wrap: wrap; /* 允许元素换行 */
+    }
+    .contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.616);
+        border-radius: 16px;
+        padding:10px;
+        transition: all 0.5s ease;
+        margin: 10px;
+    }
+
+    .contact.selected {
+        background-color: #ffffff;
+        transition: all 0.5s ease;
+        scale: 1.05;
+    }
+    .contact:hover{
+        scale: 1.05;
+    }
+    input[type="checkbox"] 
+    {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+</style>
+<script>
+function Send_Group(){
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const checkedValues = [];
+checkboxes.forEach(checkbox => {
+  if (checkbox.checked) {
+
+    const jsonData = {
+    type: 'sendmsg',
+    id: checkbox.value,
+    text:document.getElementById("TEXT_").value
+    };
+
+    const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+    };
+
+    fetch(window.location, requestOptions)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // 处理返回的数据
+        console.log('Response data:', data);
+    })
+    .catch(error => {
+        // 处理错误
+        console.error('There was an error:', error);
+    });
+
+        checkedValues.push(checkbox.value);
+    }
+    });
+
+console.log(checkedValues);
+
+}
+
+function readAndGenerateCheckboxes(file) {
+  fetch(file)
+    .then(response => response.text())
+    .then(text => {
+      const lines = text.split('\n');
+      const contactsDiv = document.getElementById('contacts');
+
+      lines.forEach(line => {
+        const [id, nickname, username, logolink] = line.split('|').map(item => item.trim());
+        if (id && nickname && username && logolink) {
+          const contactWrapper = document.createElement('div');
+          contactWrapper.classList.add('contact');
+
+          // 创建 img 元素用于显示头像
+          const img = document.createElement('img');
+          img.src = logolink;
+          img.alt = `${nickname}'s Avatar`;
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = id;
+          checkbox.value = id;
+
+          const label = document.createElement('label');
+          label.htmlFor = id;
+          label.innerHTML = `<span style="color:rgba(168, 255, 133, 0.74)">${nickname}<br>@${username}</span>`;
+
+          // 将头像 img 元素添加到 contactWrapper 中
+          contactWrapper.appendChild(img);
+
+          contactWrapper.appendChild(checkbox);
+          contactWrapper.appendChild(label);
+          contactsDiv.appendChild(contactWrapper);
+
+          // 点击外部 div 时，修改内部复选框的 checked 属性
+          contactWrapper.addEventListener('click', () => {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+            if (checkbox.checked) {
+              contactWrapper.classList.add('selected');
+            } else {
+              contactWrapper.classList.remove('selected');
+            }
+          });
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error reading the file:', error);
+    });
+}
+
+    readAndGenerateCheckboxes('../Config/Contact.txt');
+    readAndGenerateCheckboxes('../Config/Groups.txt');
+    </script>

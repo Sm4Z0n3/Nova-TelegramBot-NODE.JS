@@ -1,0 +1,50 @@
+#tokens th{
+    padding: 10px 80px 10px 80px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}#tokens th:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+}
+#tokens tr{
+    margin-left: 100px;
+    transition: all 0.4s ease;
+}#tokens tr:hover{
+    border: 1px #fff;
+    transition: all 0.4s ease;
+}
+
+  .info-window {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px; /* 600px 的一半 */
+    margin-left: -220px; /* 440px 的一半 */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 440px;
+    height: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .info-window h2 {
+    margin-top: 0;
+  }
+  
+  .info-window p {
+    margin-bottom: 20px;
+  }
+  
+  .info-window .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  

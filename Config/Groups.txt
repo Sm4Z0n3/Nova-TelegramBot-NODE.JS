@@ -1,0 +1,3 @@
+-1001712388456|SmaZone IT Studio|Sm4ITS|https://api.telegram.org/file/bot6662950137:AAH2w1Fe58rEo3jtOYa_gPz4uZbf9mruYu0/profile_photos/file_1.jpg
+-1001959557539|NovaBotTestGroup|novabottest111|https://api.telegram.org/file/bot6662950137:AAH2w1Fe58rEo3jtOYa_gPz4uZbf9mruYu0/profile_photos/file_2.jpg
+-1001965727531|jshdbxnxihxjcjxjd|undefined|https://api.telegram.org/file/bot6662950137:AAH2w1Fe58rEo3jtOYa_gPz4uZbf9mruYu0/profile_photos/file_3.jpg

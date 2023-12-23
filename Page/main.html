@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Page\Style\sidebar.css">
+    <link rel="stylesheet" href="../Page/Style/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 <body>
     <div class="box">
-        <img alt="垃圾浏览器" style="width: 130px;height: 130px;margin-left: 5px;border-radius: 45px;" src="Page\image\cat.jpg">
-        <a href="/Home"><span>Home</span></a>
-        <a href="/Messages"><span>Messages</span></a>
-        <a href="/Bots"><span>Bots</span></a>
-        <a href="/Groups"><span>Groups</span></a>
-        <a href="#"><span>picture</span></a>
-        <a href="#"><span>OR code</span></a>
-        <a href="#"><span>authentication</span></a>
-        <a href="#"><span>cancellation</span></a>
+        <img class="animate__animated animate__swing" alt="垃圾浏览器" style="width: 130px;height: 130px;margin-left: 5px;border-radius: 45px;" src="Page\image\cat.jpg">
+        <a class="animate__animated animate__slideInLeft" href="/Home"><span><i class="bi bi-house"></i>Home</span></a>
+        <a class="animate__animated animate__slideInLeft" href="/Messages"><span><i class="bi bi-chat-dots"></i>Messages</span></a>
+        <a class="animate__animated animate__slideInLeft" href="/Bots"><span><i class="bi bi-robot"></i>Bots</span></a>
+        <a class="animate__animated animate__slideInLeft" href="/Contact"><span><i class="bi bi-people"></i>Contact</span></a>
+        <a class="animate__animated animate__slideInLeft" href="#"><span>picture</span></a>
+        <a class="animate__animated animate__slideInLeft" href="#"><span>OR code</span></a>
+        <a class="animate__animated animate__slideInLeft" href="#"><span>authentication</span></a>
     </div>
-    <div id="app" style="overflow-y: auto;height: 86%;width: 78%;padding: 12px;background-color: rgba(240, 248, 255, 0.857);margin-left: 15px;border-radius: 15px;">
+    <div id="app">
     {MAINAPP}
     </div>
 </body>
 </html>
+<script src="../Page/script/anima.js"></script>
 <script>
     function isMobileDevice() {
   const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -31,10 +34,7 @@
 var app_ = document.getElementById("app");
 var boxElement = document.querySelector('.box');
 if (isMobileDevice()) {
-    alert("用户在手机端");
-    boxElement.style.width = '3px';
-        boxElement.style.height = '12px';
-        boxElement.style.marginLeft = '0px';
-    boxElement.className = "box1";
+    boxElement.classList.remove('box'); // 移除旧类名
+    boxElement.classList.add('box1'); // 添加新类名
 }
 </script>
